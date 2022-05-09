@@ -2,9 +2,12 @@ if (location.protocol != "https:") {
   location.href =
     "https:" + window.location.href.substring(window.location.protocol.length);
 }
-var input = document.getElementsByTagName("textarea")[0];
+var input = document.getElementsByTagName("div")[1];
+input.spellcheck = false;
+input.focus();
+input.blur();
 var output = document.getElementsByTagName("p")[0];
-var code = input.value;
+var code = input.innerHTML;
 var mobileBtnHandler = document.getElementById("mobileBtnHandler");
 
 const ua = navigator.userAgent;
@@ -20,7 +23,8 @@ if (
 }
 
 function updateCode() {
-  var inSplit = input.value.split("");
+  var inSplit = input.innerHTML.split("");
+  var inSplitTwo = input.innerHTML.split("");
   for (let i = 0; i < inSplit.length; i++) {
     if (
       inSplit[i] != "+" &&
@@ -35,6 +39,27 @@ function updateCode() {
     }
   }
   code = inSplit.join("");
+  for (let i = 0; i < inSplitTwo.length; i++) {
+    if (inSplitTwo[i] == "+") {
+      inSplitTwo[i] = "<span class='b'>+</span>";
+    } else if (inSplitTwo[i] == "x") {
+      inSplitTwo[i] = "<span class='e'>x</span>";
+    } else if (inSplitTwo[i] == "o") {
+      inSplitTwo[i] = "<span class='h'>o</span>";
+    } else if (inSplitTwo[i] == "u") {
+      inSplitTwo[i] = "<span class='g'>u</span>";
+    } else if (inSplitTwo[i] == "t") {
+      inSplitTwo[i] = "<span class='w'>t</span>";
+    }
+  }
+  input.innerHTML = inSplitTwo.join("");
+  const selection = window.getSelection();
+  const range = document.createRange();
+  selection.removeAllRanges();
+  range.selectNodeContents(input);
+  range.collapse(false);
+  selection.addRange(range);
+  input.focus();
 }
 
 input.addEventListener("keydown", function (event) {
@@ -44,16 +69,16 @@ input.addEventListener("keydown", function (event) {
     if (document.selection) {
       input.focus();
       var sel = document.selection.createRange();
-      sel.text = "    ";
+      sel.text = "&nbsp;&nbsp;&nbsp;&nbsp;";
     } else if (input.selectionStart || input.selectionStart == "0") {
       var startPos = input.selectionStart;
       var endPos = input.selectionEnd;
-      input.value =
-        input.value.substring(0, startPos) +
-        "    " +
-        input.value.substring(endPos, input.value.length);
+      input.innerHTML =
+        input.innerHTML.substring(0, startPos) +
+        "&nbsp;&nbsp;&nbsp;&nbsp;" +
+        input.innerHTML.substring(endPos, input.innerHTML.length);
     } else {
-      input.value += "    ";
+      input.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;";
     }
   }
 });
@@ -66,6 +91,13 @@ document.addEventListener("keydown", function (event) {
     run();
   } else if (code === 67) {
     output.innerHTML = "";
+  }
+});
+
+input.addEventListener("keyup", function (event) {
+  var code = event.keyCode || event.which;
+  if (event.key === "+" || code === 88 || code === 79 || code === 85 || code === 84) {
+    updateCode();
   }
 });
 
