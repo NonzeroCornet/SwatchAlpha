@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <title>Shift - The Online ShiftLang Compiler</title>
+    <link rel="canonical" href="https://shift.tk/" />
+    <meta
+      name="description"
+      content="Compile and run Shift online for free, in the worlds most simple ShiftLang compiler online."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Shift - The Online ShiftLang Compiler" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shift.tk/" />
+    <meta
+      property="og:description"
+      content="Compile and run Shift online for free, in the worlds most simple ShiftLang compiler online."
+    />
+    <meta property="og:image" content="/logo.svg" />
+    <script src="/compiler.js" defer></script>
+  </head>
+
+  <body>
+    <center>
+      <div
+        style="
+          position: fixed;
+          z-index: -1;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <textarea
+          style="width: 45vw; height: 500px; margin-top: 100px"
+          id="input"
+          onkeyup="updateCode()"
+        >
+Hell0 W0rld Pr0gram Wri11en in Shif1
+
++o
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    u
+++++++++++++++++++
+    tttu
++
+xxxxxxx
+    uu
+xxx
+    u
+++++++++++
+    ttttt
++++++++
+    tu
+++
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    u
+++++++++++
+    t
++++++++++
+x
+    u
+xxx
+    u
++++++++++++++
+    tut
+++++
+    tu
+++++++++++++
+    ttt
++
+    tu
+        </textarea
+        ><label for="input" style="color: white">Code Editor</label><br />
+        <div id="mobileBtnHandler">
+          <button onclick="run()" style="margin-right: 5px">Run</button
+          ><button onclick="toggleHide()" style="margin-left: 5px">
+            ToggleEdit
+          </button>
+        </div>
+      </div>
+    </center>
+    <p></p>
+  </body>
+</html>
