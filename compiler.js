@@ -4,7 +4,7 @@ if (location.protocol != "https:") {
 }
 var input = document.getElementsByTagName("textarea")[0];
 var output = document.getElementsByTagName("p")[0];
-var code = "";
+var code = input.value;
 var mobileBtnHandler = document.getElementById("mobileBtnHandler");
 
 const ua = navigator.userAgent;
@@ -82,8 +82,10 @@ var bigNum = 0;
 var codeFuncs = [];
 var codes = [];
 var smolNum = 0;
+var hasPrinted = false;
 
 function run() {
+  hasPrinted = false;
   smolNum = 0;
   bigNum = 0;
   functions = [];
@@ -113,7 +115,11 @@ function run() {
       bigNum += smolNum;
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "u") {
       output.innerHTML += String.fromCharCode(bigNum);
+      hasPrinted = true;
     }
+  }
+  if(hasPrinted) {
+    output.innerHTML += "<br>";
   }
 }
 
@@ -130,7 +136,7 @@ function execute(functionIndex) {
     if (functions[functionIndex][i] == "+") {
       bigNum++;
     } else if (functions[functionIndex][i] == "t") {
-      smolNum += bigNum;
+      bigNum += smolNum;
     } else if (functions[functionIndex][i] == "u") {
       bigNum = prompt(
         "Taking Input... (Will only take in first character)"
