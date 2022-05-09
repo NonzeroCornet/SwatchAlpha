@@ -1,2 +1,2 @@
 # Shift
-shiftlang.tk
+https://shiftlang.tk/
