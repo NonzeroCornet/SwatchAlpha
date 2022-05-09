@@ -118,20 +118,14 @@ function run() {
       hasPrinted = true;
     }
   }
-  if(hasPrinted) {
+  if (hasPrinted) {
     output.innerHTML += "<br>";
   }
 }
 
-var executions = 0;
+var reExecutions = 0;
 
 function execute(functionIndex) {
-  executions++;
-  if (executions == 5000) {
-    alert("CALL STACK SIZE EXCEEDED! ABORTING!!!");
-    executions = 0;
-    return;
-  }
   for (var i = 0; i < functions[functionIndex].length; i++) {
     if (functions[functionIndex][i] == "+") {
       bigNum++;
@@ -143,6 +137,12 @@ function execute(functionIndex) {
       ).charCodeAt(0);
     } else if (functions[functionIndex][i] == "x") {
       execute(bigNum);
+      reExecutions++;
+      if (reExecutions == 5000) {
+        alert("CALL STACK SIZE EXCEEDED! ABORTING!!!");
+        reExecutions = 0;
+        return;
+      }
     }
   }
 }
