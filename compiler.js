@@ -2,12 +2,10 @@ if (location.protocol != "https:") {
   location.href =
     "https:" + window.location.href.substring(window.location.protocol.length);
 }
-var input = document.getElementsByTagName("div")[1];
-input.spellcheck = false;
-input.focus();
-input.blur();
-var output = document.getElementsByTagName("p")[0];
-var code = input.innerHTML;
+var input = document.getElementsByTagName("textarea")[0];
+var nums = document.getElementsByTagName("p")[0];
+var output = document.getElementsByTagName("p")[1];
+var code = input.value;
 var mobileBtnHandler = document.getElementById("mobileBtnHandler");
 
 const ua = navigator.userAgent;
@@ -23,8 +21,7 @@ if (
 }
 
 function updateCode() {
-  var inSplit = input.innerHTML.split("");
-  var inSplitTwo = input.innerHTML.split("");
+  var inSplit = input.value.split("");
   for (let i = 0; i < inSplit.length; i++) {
     if (
       inSplit[i] != "+" &&
@@ -39,47 +36,18 @@ function updateCode() {
     }
   }
   code = inSplit.join("");
-  for (let i = 0; i < inSplitTwo.length; i++) {
-    if (inSplitTwo[i] == "+") {
-      inSplitTwo[i] = "<span class='b'>+</span>";
-    } else if (inSplitTwo[i] == "x") {
-      inSplitTwo[i] = "<span class='e'>x</span>";
-    } else if (inSplitTwo[i] == "o") {
-      inSplitTwo[i] = "<span class='h'>o</span>";
-    } else if (inSplitTwo[i] == "u") {
-      inSplitTwo[i] = "<span class='g'>u</span>";
-    } else if (inSplitTwo[i] == "t") {
-      inSplitTwo[i] = "<span class='w'>t</span>";
-    }
-  }
-  input.innerHTML = inSplitTwo.join("");
-  const selection = window.getSelection();
-  const range = document.createRange();
-  selection.removeAllRanges();
-  range.selectNodeContents(input);
-  range.collapse(false);
-  selection.addRange(range);
-  input.focus();
 }
 
 input.addEventListener("keydown", function (event) {
   var code = event.keyCode || event.which;
   if (code === 9) {
     event.preventDefault();
-    if (document.selection) {
-      input.focus();
-      var sel = document.selection.createRange();
-      sel.text = "&nbsp;&nbsp;&nbsp;&nbsp;";
-    } else if (input.selectionStart || input.selectionStart == "0") {
-      var startPos = input.selectionStart;
-      var endPos = input.selectionEnd;
-      input.innerHTML =
-        input.innerHTML.substring(0, startPos) +
-        "&nbsp;&nbsp;&nbsp;&nbsp;" +
-        input.innerHTML.substring(endPos, input.innerHTML.length);
-    } else {
-      input.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;";
-    }
+    var start = this.selectionStart;
+    var end = this.selectionEnd;
+    this.value = this.value.substring(0, start) +
+      "    " + this.value.substring(end);
+    this.selectionStart =
+    this.selectionEnd = start + 4;
   }
 });
 
@@ -91,13 +59,6 @@ document.addEventListener("keydown", function (event) {
     run();
   } else if (code === 67) {
     output.innerHTML = "";
-  }
-});
-
-input.addEventListener("keyup", function (event) {
-  var code = event.keyCode || event.which;
-  if (event.key === "+" || code === 88 || code === 79 || code === 85 || code === 84) {
-    updateCode();
   }
 });
 
@@ -146,13 +107,24 @@ function run() {
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "t") {
       bigNum += smolNum;
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "u") {
-      output.innerHTML += String.fromCharCode(bigNum);
+      if(bigNum === 13) {
+        output.innerHTML += "<br>";
+      } else if(bigNum === 32) {
+        output.innerHTML += "&nbsp;";
+      } else if(bigNum === 8) {
+        let tempOut = output.innerHTML.split("");
+        tempOut.pop();
+        output.innerHTML = tempOut.join("");
+      } else {
+        output.innerHTML += String.fromCharCode(bigNum);
+      }
       hasPrinted = true;
     }
   }
   if (hasPrinted) {
     output.innerHTML += "<br>";
   }
+  nums.innerHTML = smolNum + ":" + bigNum;
 }
 
 var reExecutions = 0;

@@ -1,3 +1,3 @@
-# ShiftLang Online Compiler
+# Swatch Online Compiler
 
-https://shiftlang.tk/
+https://runswatch.tk/

@@ -4,229 +4,91 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-    <title>Shift - The Online ShiftLang Compiler</title>
-    <link rel="canonical" href="https://shift.tk/" />
+    <title>Swatch - The Online Swatch Compiler</title>
+    <link rel="canonical" href="https://runswatch.tk/" />
     <meta
       name="description"
-      content="Compile and run Shift online for free, in the worlds most simple ShiftLang compiler online."
+      content="Compile and run Swatch online for free, in the worlds most simple Swatch compiler online."
     />
     <meta name="robots" content="index,follow" />
-    <meta property="og:title" content="Shift - The Online ShiftLang Compiler" />
+    <meta property="og:title" content="Swatch - The Online Swatch Compiler" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://shift.tk/" />
+    <meta property="og:url" content="https://runswatch.tk/" />
     <meta
       property="og:description"
-      content="Compile and run Shift online for free, in the worlds most simple ShiftLang compiler online."
+      content="Compile and run Swatch online for free, in the worlds most simple Swatch compiler online."
     />
     <meta property="og:image" content="/logo.svg" />
     <script src="/compiler.js" defer></script>
-    <style>
-      .b {
-        color: blue;
-      }
-      .h {
-        color: orange;
-      }
-      .e {
-        color: red;
-      }
-      .w {
-        color: pink;
-      }
-      .g {
-        color: green;
-      }
-      * {
-        caret-color: white;
-      }
-    </style>
   </head>
 
-  <body style="background-color: black">
+  <body>
     <center>
       <div
         style="
           position: fixed;
-          z-index: -1;
+          z-index: 1;
           left: 0;
           right: 0;
           margin-left: auto;
           margin-right: auto;
         "
       >
-        <div
-          style="
-            width: 50vw;
-            height: 500px;
-            margin-top: 100px;
-            text-align: left;
-            border: 1px solid grey;
-            overflow-y: auto;
-            background-color: black;
-            color: white;
-                 padding: 10px;
-          "
+        <p>
+          0:0
+        </p>
+        <textarea
+          style="width: 50vw; height: 500px; margin-top: 90px"
           id="input"
-          contenteditable="true"
+          onkeyup="updateCode()"
+          spellcheck="false"
         >
-          <span class="i">Hell0 W0rld Pr0gram Wri11en in Shif1</span><br />
-          <br />
-          <span class="b">+</span><span class="h">o</span><br />
-          <br />
-          <span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="w">t</span><span class="w">t</span
-          ><span class="g">u</span><br />
-          <span class="b">+</span><br />
-          <span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span
-          ><span class="g">u</span><br />
-          <span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="w">t</span><span class="w">t</span
-          ><span class="w">t</span><span class="w">t</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span><br />
-          <span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><br />
-          <span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span><br />
-          <span class="e">x</span><span class="e">x</span
-          ><span class="e">x</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="g">u</span><span class="w">t</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="g">u</span><br />
-          <span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span
-          ><span class="b">+</span><span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="w">t</span><span class="w">t</span><br />
-          <span class="b">+</span><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="w">t</span
-          ><span class="g">u</span>
-        </div>
-        <br />
+HELLO WORLD PROGRAM WRITTEN IN SWATCH
+
++o
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    u
+++++++++++++++++++
+    tttu
++
+xxxxxxx
+    uu
+xxx
+    u
+++++++++++
+    ttttt
++++++++
+    tu
+++
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    u
+++++++++++
+    t
++++++++++
+x
+    u
+xxx
+    u
++++++++++++++
+    tut
+++++
+    tu
+++++++++++++
+    ttt
++
+    tu
+        </textarea
+        ><br />
         <div id="mobileBtnHandler">
           <button onclick="run()" style="margin-right: 5px">Run</button
           ><button onclick="toggleHide()" style="margin-left: 5px">
             ToggleEdit
           </button>
         </div>
-        <label for="input">Code Editor</label>
+        <label for="input" style="color: white">Code Editor</label>
       </div>
     </center>
-    <p style="color: white"></p>
+    <p></p>
   </body>
 </html>
